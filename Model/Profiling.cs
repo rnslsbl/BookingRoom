@@ -5,20 +5,20 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Common;
+using BookingRoom.Context;
 
-namespace BookingRoom;
+namespace BookingRoom.Model;
 public class Profiling
 {
     public string Employee_Id { get; set; }
     public int Education_Id { get; set; }
 
-    private static readonly string connectionString =
-    "Data Source=DESKTOP-TQVRSD8;Database = db_booking_room;Integrated Security = True; Connect Timeout = 30; Encrypt=False;";
 
-   /* public static List<Profiling> GetProfilings()
+    public List<Profiling> GetProfiling()
     {
         var pro = new List<Profiling>();
-        using SqlConnection connection = new SqlConnection(connectionString);
+        using var connection = MyConnection.Get(); 
         try
         {
             SqlCommand command = new SqlCommand();
@@ -49,14 +49,14 @@ public class Profiling
             connection.Close();
         }
         return new List<Profiling>();
-    }*/
-    public static int InsertProfiling(Profiling profiling)
+    }
+
+
+    public int InsertProfiling(Profiling profiling)
     {
         int result = 0;
-        using var connection = new SqlConnection(connectionString);
+        using var connection = MyConnection.Get();
         connection.Open();
-        var employee = new Employee();
-        var education = new Education();
 
         SqlTransaction transaction = connection.BeginTransaction();
         try
@@ -92,24 +92,8 @@ public class Profiling
         }
         return result;
     }
-}
 
-    /*public static void CreateProfiling()
-    {
-        var profilings = new Profiling();
-        Console.Write("Masukkan Employee : ");
-        profilings.Employee_Id = Console.ReadLine();
-        var result = InsertProfiling(profilings);
-        *//*if (result > 0)
-        {
-            Console.WriteLine("Insert success.");
-        }
-        else
-        {
-            Console.WriteLine("Insert failed.");
-        }*//*
 
     }
-}
 
-*/
+
