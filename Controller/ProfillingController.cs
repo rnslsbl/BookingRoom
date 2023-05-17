@@ -11,6 +11,20 @@ namespace BookingRoom.Controller
     public class ProfillingController
     {
         private Profiling _profiling = new Profiling();
+        public void GetAll()
+        {
+            var results = _profiling.GetProfiling();
+            var view = new ProfilingView();
+            
+            if (results.Count == 0)
+            {
+                view.ReadProfiling("Data Tidak Ditemukan");
+            }
+            else
+            {
+                view.ReadProfiling(results);
+            }
+        }
         public void Insert(Profiling profilings)
         {
             var result = _profiling.InsertProfiling(profilings);

@@ -3,17 +3,18 @@ using BookingRoom.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BookingRoom.Controller; 
     public class EducationController
     {
-    private Education education = new Education();
+    private Education _education = new Education();
 
     public void GetAll()
     {
-        var results = education.GetEducation();
+        var results = _education.GetEducation();
         var view = new EducationView();
         if (results.Count == 0)
         {
@@ -25,20 +26,11 @@ namespace BookingRoom.Controller;
         }
     }
 
-    public void UpdateEducation()
+    public void Update(Education education)
     {
-        var education = new Education();
-        Console.Write("Masukkan Id : ");
-        education.Id = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Masukkan Major Baru : ");
-        education.Major = Console.ReadLine();
-        Console.Write("Masukkan Degree Baru : ");
-        education.Degree = Console.ReadLine();
-        Console.Write("Masukkan Gpa Baru : ");
-        education.Gpa = Console.ReadLine();
-        Console.Write("Masukkan ID University : ");
-        education.University_Id = Convert.ToInt32(Console.ReadLine());
-        var results = education.UpdateEducation(education);
+        
+        var results = _education.UpdateEducation(education);
+        var view = new EducationView();
         if (results > 0)
         {
             Console.WriteLine("Update success");
@@ -49,12 +41,10 @@ namespace BookingRoom.Controller;
         }
 
     }
-    public void DeleteEducation()
+    public void Delete(Education education)
     {
-        var education = new Education();
-        Console.Write("Masukkan ID yang ingin dihapus : ");
-        education.Id = Convert.ToInt32(Console.ReadLine());
-        var results = education.DeleteEducation(education);
+        var results = _education.DeleteEducation(education);
+        var view = new EducationView();
         if (results > 0)
         {
             Console.WriteLine("Delete success");
@@ -65,27 +55,12 @@ namespace BookingRoom.Controller;
         }
 
     }
-    public void GetIdEducation()
-    {
-        var education = new Education();
-        Console.Write("Masukkan Id untuk dicari : ");
-        education.Id = Convert.ToInt32(Console.ReadLine());
-        education.GetIdEducation(education);
 
-    }
-    public void CreateEducation()
+    public void Create(Education education)
     {
-        var education = new Education();
-        Console.Write("Masukkan Major : ");
-        education.Major = Console.ReadLine();
-        Console.Write("Masukkan Degree : ");
-        education.Degree = Console.ReadLine();
-        Console.Write("Masukkan Gpa : ");
-        education.Gpa = Console.ReadLine();
-        Console.WriteLine("Masukkan ID University : ");
-        education.University_Id = Convert.ToInt32(Console.ReadLine());
-        //education.InsertEducation(education);
-        var results = education.InsertEducation(education); 
+
+        var results = _education.InsertEducation(education);
+        var view = new EducationView();
         if (results > 0)
         {
             Console.WriteLine("Insert success");
@@ -94,8 +69,15 @@ namespace BookingRoom.Controller;
         {
             Console.WriteLine("Insert Failed");
         }
-
-
     }
-}
+        public void GetIdEducation()
+        {
+            var education = new Education();
+            Console.Write("Masukkan Id untuk dicari : ");
+            education.Id = Convert.ToInt32(Console.ReadLine());
+            education.GetIdEducation(education);
+
+        }
+    }
+
 

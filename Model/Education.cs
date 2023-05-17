@@ -86,7 +86,7 @@ public class Education
                 while (reader.Read())
                 {
                     Console.WriteLine("Id: " + reader.GetInt32(0));
-                    Console.WriteLine("Name: " + reader.GetString(1));
+                    Console.WriteLine("Major Name: " + reader.GetString(1));
                 }
                 return educations;
 

@@ -14,7 +14,13 @@ public class ProfilingView
         Console.WriteLine("Employee ID: " + profiling.Employee_Id);
         Console.WriteLine("Education ID: " + profiling.Education_Id);
     }
-
+    public void ReadProfiling(List<Profiling> profilings)
+    {
+        foreach (var profiling in profilings)
+        {
+            ReadProfiling(profiling);
+        }
+    }
 
     public void ReadProfiling(string message)
     {

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace BookingRoom.View;
     public class EmployeeView
     {
+    private static Employee _employee = new Employee();
     public void ReadEmployee(Employee employee)
     {      
             Console.WriteLine("Id: " + employee.Id);
@@ -36,30 +37,8 @@ namespace BookingRoom.View;
         Console.WriteLine(message);
     }
 
-    public void CreateEmployee()
-    {
-        var employees = new Employee();
-        Console.Write("Masukkan NIK : ");
-        employees.Nik = Console.ReadLine();
-        Console.Write("Masukkan First Name : ");
-        employees.First_Name = Console.ReadLine();
-        Console.Write("Masukkan Last Name : ");
-        employees.Last_Name = Console.ReadLine();
-        Console.Write("Masukkan Birthdate : ");
-        employees.Birthdate = DateTime.Parse(Console.ReadLine());
-        Console.Write("Masukkan Gender : ");
-        employees.Gender = Console.ReadLine();
-        Console.Write("Masukkan Hiring Date : ");
-        employees.Hiring_Date = DateTime.Parse(Console.ReadLine());
-        Console.Write("Masukkan Email : ");
-        employees.Email = Console.ReadLine();
-        Console.Write("Masukkan Phone Number : ");
-        employees.Phone_Number = Console.ReadLine();
-        Console.Write("Masukkan Department Id : ");
-        employees.Department_Id = Console.ReadLine();
-        employees.InsertDataEmployee(employees);
-
-    }
+    
+    
 }
 
 
